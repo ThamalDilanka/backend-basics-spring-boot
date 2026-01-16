@@ -32,6 +32,7 @@ erDiagram
         string name
         string description
         string image_url
+        enum care_difficulty "EASY, MEDIUM, HARD"
         boolean is_available
         bigint owner_id FK
         bigint category_id FK
