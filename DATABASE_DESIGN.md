@@ -9,7 +9,7 @@
 * **name** (String): Full name.
 * **neighborhood** (String): Where they live (for searching).
 
-### Table: categories
+### Table: Plant Category
 * **id** (PK, Long): Unique ID (e.g., 1).
 * **name** (String): E.g., "Succulent", "Herb", "Flowering".
 
