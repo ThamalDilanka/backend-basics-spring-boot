@@ -42,4 +42,10 @@ public class Plant {
         PENDING_EXCHANGE,
         SWAPPED
     }
+
+    @Enumerated(EnumType.STRING)
+    private CareDifficulty careDifficulty;
+    public enum CareDifficulty {
+        EASY, MEDIUM, HARD
+    }
 }

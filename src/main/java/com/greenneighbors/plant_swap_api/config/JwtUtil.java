@@ -12,10 +12,11 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-
+    // Spring will look in application.properties for "jwt.secret"
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 
+    // Spring will look in application.properties for "jwt.expiration"
     @Value("${jwt.expiration}")
     private long EXPIRATION_TIME;
 

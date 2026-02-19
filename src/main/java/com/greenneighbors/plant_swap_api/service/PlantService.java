@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlantService {
@@ -14,23 +13,39 @@ public class PlantService {
     @Autowired
     private PlantRepository plantRepository;
 
-    // Add a new plant
+    // Create
     public Plant addPlant(Plant plant) {
         return plantRepository.save(plant);
     }
 
-    //  Get all AVAILABLE plants
+    // Read All Available
     public List<Plant> getAllAvailablePlants() {
         return plantRepository.findByStatus(Plant.PlantStatus.AVAILABLE);
     }
 
-    //  Get plants by owner (For "My Plants" page)
+    // Read One
+    public Plant getPlantById(Long id) {
+        return plantRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Plant not found with id: " + id));
+    }
+
+    // Read by Owner
     public List<Plant> getPlantsByMember(Long memberId) {
         return plantRepository.findByMemberId(memberId);
     }
 
-    //  Get plant by ID
-    public Optional<Plant> getPlantById(Long id) {
-        return plantRepository.findById(id);
+    // Update
+    public Plant updatePlant(Long id, Plant updatedData) {
+        Plant existingPlant = getPlantById(id);
+        existingPlant.setName(updatedData.getName());
+        existingPlant.setDescription(updatedData.getDescription());
+        existingPlant.setCareDifficulty(updatedData.getCareDifficulty());
+        return plantRepository.save(existingPlant);
+    }
+
+    // Delete
+    public void deletePlant(Long id) {
+        Plant existingPlant = getPlantById(id);
+        plantRepository.delete(existingPlant);
     }
 }
