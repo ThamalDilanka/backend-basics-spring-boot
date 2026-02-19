@@ -89,4 +89,24 @@ public class PlantController {
         plantService.deletePlant(id);
         return ResponseEntity.ok(new ApiResponse<>(true, "Plant deleted successfully", null));
     }
+
+    // 6. GET Plants by Member ID
+    @GetMapping("/member/{memberId}")
+    public ResponseEntity<ApiResponse<List<PlantResponseDTO>>> getPlantsByMember(@PathVariable Long memberId) {
+        List<PlantResponseDTO> dtos = plantService.getPlantsByMember(memberId).stream()
+                .map(this::convertToDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(new ApiResponse<>(true, "Member's plants retrieved", dtos));
+    }
+
+    //  Partial Update (Status only)
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<ApiResponse<PlantResponseDTO>> updatePlantStatus(
+            @PathVariable Long id,
+            @RequestBody java.util.Map<String, String> updates) {
+
+        Plant.PlantStatus status = Plant.PlantStatus.valueOf(updates.get("status").toUpperCase());
+        Plant updatedPlant = plantService.updatePlantStatus(id, status);
+
+        return ResponseEntity.ok(new ApiResponse<>(true, "Plant status updated", convertToDTO(updatedPlant)));
+    }
 }

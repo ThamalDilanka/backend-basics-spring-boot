@@ -40,4 +40,12 @@ public class ExchangeRequestService {
         request.setStatus(newStatus);
         return exchangeRequestRepository.save(request);
     }
+
+    public List<ExchangeRequest> getOutgoingRequests(Long requesterId) {
+        return exchangeRequestRepository.findByRequesterId(requesterId);
+    }
+
+    public List<ExchangeRequest> getIncomingRequests(Long memberId) {
+        return exchangeRequestRepository.findByPlantMemberId(memberId);
+    }
 }
