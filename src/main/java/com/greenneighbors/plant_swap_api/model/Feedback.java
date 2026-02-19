@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "feedback")
@@ -16,17 +19,22 @@ public class Feedback {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer rating; // 1-5
-
-    private String comment;
-
-    // Relationships
-
-    @OneToOne
-    @JoinColumn(name = "exchange_id", nullable = false)
-    private ExchangeRequest exchangeRequest;
-
+    // The person giving the feedback
     @ManyToOne
     @JoinColumn(name = "reviewer_id", nullable = false)
     private Member reviewer;
+
+    // The person receiving the feedback
+    @ManyToOne
+    @JoinColumn(name = "reviewed_member_id", nullable = false)
+    private Member reviewedMember;
+
+    @Column(nullable = false)
+    private int rating; // e.g., 1 to 5 stars
+
+    @Column(length = 500)
+    private String comments;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }
