@@ -6,7 +6,7 @@ target/
 
 .idea/
 .mvn/
-
+.env
 ### IntelliJ IDEA ###
 ../.idea/
 *.iws
