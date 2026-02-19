@@ -11,4 +11,7 @@ public interface ExchangeRequestRepository extends JpaRepository<ExchangeRequest
 
     // Find requests FOR my specific plant
     List<ExchangeRequest> findByPlantId(Long plantId);
+
+    // Find incoming requests (people asking for my plants)
+    List<ExchangeRequest> findByPlantMemberId(Long memberId);
 }

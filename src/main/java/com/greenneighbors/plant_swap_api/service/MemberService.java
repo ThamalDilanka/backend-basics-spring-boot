@@ -54,4 +54,18 @@ public class MemberService {
         response.put("email", email);
         return response;
     }
+
+    // 4. Get Member by ID
+    public Member getMemberById(Long id) {
+        return memberRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Member not found with ID: " + id));
+    }
+
+    // 5. Update Member
+    public Member updateMember(Long id, Member updatedData) {
+        Member existingMember = getMemberById(id);
+        existingMember.setName(updatedData.getName());
+        existingMember.setNeighborhood(updatedData.getNeighborhood());
+        return memberRepository.save(existingMember);
+    }
 }

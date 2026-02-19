@@ -5,6 +5,8 @@ import com.greenneighbors.plant_swap_api.repository.FeedbackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FeedbackService {
 
@@ -13,5 +15,9 @@ public class FeedbackService {
 
     public Feedback addFeedback(Feedback feedback) {
         return feedbackRepository.save(feedback);
+    }
+
+    public List<Feedback> getFeedbackForMember(Long memberId) {
+        return feedbackRepository.findByReviewedMemberId(memberId);
     }
 }

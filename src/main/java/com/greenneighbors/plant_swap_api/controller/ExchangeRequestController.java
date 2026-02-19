@@ -60,12 +60,29 @@ public class ExchangeRequestController {
     }
 
     // 3. Update status (Accept/Reject)
-    @PutMapping("/{id}/status")
+    // 3. Update status (Accept/Reject/Complete)
+    @PatchMapping("/{id}/status") // <-- MAKE SURE THIS SAYS @PatchMapping
     public ResponseEntity<ApiResponse<ExchangeResponseDTO>> updateStatus(
             @PathVariable Long id,
             @RequestParam ExchangeRequest.RequestStatus status) {
 
         ExchangeRequest updatedRequest = exchangeRequestService.updateStatus(id, status);
         return ResponseEntity.ok(new ApiResponse<>(true, "Request status updated", convertToDTO(updatedRequest)));
+    }
+
+    // 4. Get Outgoing Requests (Requests I made)
+    @GetMapping("/outgoing/{userId}")
+    public ResponseEntity<ApiResponse<List<ExchangeResponseDTO>>> getOutgoingRequests(@PathVariable Long userId) {
+        List<ExchangeResponseDTO> dtos = exchangeRequestService.getOutgoingRequests(userId)
+                .stream().map(this::convertToDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(new ApiResponse<>(true, "Outgoing requests retrieved", dtos));
+    }
+
+    // 5. Get Incoming Requests (Requests for my plants)
+    @GetMapping("/incoming/{userId}")
+    public ResponseEntity<ApiResponse<List<ExchangeResponseDTO>>> getIncomingRequests(@PathVariable Long userId) {
+        List<ExchangeResponseDTO> dtos = exchangeRequestService.getIncomingRequests(userId)
+                .stream().map(this::convertToDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(new ApiResponse<>(true, "Incoming requests retrieved", dtos));
     }
 }

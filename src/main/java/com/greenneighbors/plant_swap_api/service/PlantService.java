@@ -49,4 +49,11 @@ public class PlantService {
         Plant existingPlant = getPlantById(id);
         plantRepository.delete(existingPlant);
     }
+
+    // Change Status
+    public Plant updatePlantStatus(Long id, Plant.PlantStatus newStatus) {
+        Plant plant = getPlantById(id);
+        plant.setStatus(newStatus);
+        return plantRepository.save(plant);
+    }
 }

@@ -1,0 +1,2291 @@
+{
+  "info": {
+    "_postman_id": "c23b6d63-8489-4032-9143-9167e1c71817",
+    "name": "Plant Swap API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48222726",
+    "_collection_link": "https://go.postman.co/collection/48222726-c23b6d63-8489-4032-9143-9167e1c71817?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET Health Check",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "health"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET Health Check",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 17:51:37 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"database\": {\n            \"connected\": true,\n            \"type\": \"PostgreSQL\",\n            \"status\": \"UP\"\n        },\n        \"application\": \"plant-swap-api\",\n        \"status\": \"UP\",\n        \"timestamp\": \"2026-02-19T17:51:37.534757800Z\"\n    },\n    \"success\": true,\n    \"message\": \"Service health check\",\n    \"timestamp\": \"2026-02-19T17:51:37.534757800Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "POST Register Member",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"ajay@gmail.com\",\r\n    \"password\": \"password123\",\r\n    \"name\": \"Ajay\",\r\n    \"neighborhood\": \"Mannar\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/members/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "members",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "POST Register Member",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"ajay@gmail.com\",\r\n    \"password\": \"password123\",\r\n    \"name\": \"Ajay\",\r\n    \"neighborhood\": \"Mannar\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/members/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "members",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:03:06 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Member registered successfully\",\n    \"data\": {\n        \"email\": \"ajay@gmail.com\",\n        \"id\": 7,\n        \"name\": \"Ajay\",\n        \"neighborhood\": \"Mannar\"\n    },\n    \"timestamp\": \"2026-02-19T18:03:06.133902Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET Member by ID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/members/7",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "members",
+                "7"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET Member by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/members/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "members",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:13:12 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Member found\",\n    \"data\": {\n        \"email\": \"user0@example.com\",\n        \"id\": 1,\n        \"name\": \"Saman Kumara\",\n        \"neighborhood\": \"Colombo 03\"\n    },\n    \"timestamp\": \"2026-02-19T18:13:12.914075900Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PUT Update Member",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Ajay AR\",\r\n    \"neighborhood\": \"Belihuloya\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/members/7",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "members",
+                "7"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PUT Update Member",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Ajay AR\",\r\n    \"neighborhood\": \"Belihuloya\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/members/7",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "members",
+                    "7"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:05:30 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Member updated\",\n    \"data\": {\n        \"email\": \"ajay@gmail.com\",\n        \"id\": 7,\n        \"name\": \"Ajay AR\",\n        \"neighborhood\": \"Belihuloya\"\n    },\n    \"timestamp\": \"2026-02-19T18:05:30.516215600Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET Member's Plants",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/plants/member/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plants",
+                "member",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET Member's Plants",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/plants/member/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "plants",
+                    "member",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:12:19 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Member's plants retrieved\",\n    \"data\": [\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Succulents\",\n            \"description\": \"Fast growing trailing plant!\",\n            \"id\": 22,\n            \"name\": \"Golden Pothos\",\n            \"ownerName\": \"Saman Kumara\",\n            \"status\": \"AVAILABLE\"\n        }\n    ],\n    \"timestamp\": \"2026-02-19T18:12:19.720045900Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Plants",
+      "item": [
+        {
+          "name": "GET All Plants",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/plants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plants"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET All Plants",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/plants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "plants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:09:36 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Plants retrieved\",\n    \"data\": [\n        {\n            \"careDifficulty\": \"HARD\",\n            \"categoryName\": \"Cacti\",\n            \"description\": \"A healthy and beautiful Aloe Vera looking for a new home.\",\n            \"id\": 1,\n            \"name\": \"Aloe Vera\",\n            \"ownerName\": \"Nimali Perera\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Cacti\",\n            \"description\": \"A healthy and beautiful Snake Plant looking for a new home.\",\n            \"id\": 2,\n            \"name\": \"Snake Plant\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Flowering\",\n            \"description\": \"A healthy and beautiful Spider Plant looking for a new home.\",\n            \"id\": 3,\n            \"name\": \"Spider Plant\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Herbs\",\n            \"description\": \"A healthy and beautiful Peace Lily looking for a new home.\",\n            \"id\": 4,\n            \"name\": \"Peace Lily\",\n            \"ownerName\": \"Nimali Perera\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"HARD\",\n            \"categoryName\": \"Indoor Foliage\",\n            \"description\": \"A healthy and beautiful Monstera looking for a new home.\",\n            \"id\": 5,\n            \"name\": \"Monstera\",\n            \"ownerName\": \"Nimali Perera\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Flowering\",\n            \"description\": \"A healthy and beautiful Pothos looking for a new home.\",\n            \"id\": 6,\n            \"name\": \"Pothos\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"HARD\",\n            \"categoryName\": \"Cacti\",\n            \"description\": \"A healthy and beautiful Basil looking for a new home.\",\n            \"id\": 7,\n            \"name\": \"Basil\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Flowering\",\n            \"description\": \"A healthy and beautiful Mint looking for a new home.\",\n            \"id\": 8,\n            \"name\": \"Mint\",\n            \"ownerName\": \"Ruwanthi Fernando\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Herbs\",\n            \"description\": \"A healthy and beautiful Jade Plant looking for a new home.\",\n            \"id\": 9,\n            \"name\": \"Jade Plant\",\n            \"ownerName\": \"Amila Silva\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Indoor Foliage\",\n            \"description\": \"A healthy and beautiful ZZ Plant looking for a new home.\",\n            \"id\": 10,\n            \"name\": \"ZZ Plant\",\n            \"ownerName\": \"Amila Silva\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"HARD\",\n            \"categoryName\": \"Succulents\",\n            \"description\": \"A healthy and beautiful Orchid looking for a new home.\",\n            \"id\": 11,\n            \"name\": \"Orchid\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Flowering\",\n            \"description\": \"A healthy and beautiful Cactus looking for a new home.\",\n            \"id\": 12,\n            \"name\": \"Cactus\",\n            \"ownerName\": \"Piyumi Hansika\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Flowering\",\n            \"description\": \"A healthy and beautiful Fern looking for a new home.\",\n            \"id\": 13,\n            \"name\": \"Fern\",\n            \"ownerName\": \"Ruwanthi Fernando\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Indoor Foliage\",\n            \"description\": \"A healthy and beautiful Bonsai looking for a new home.\",\n            \"id\": 14,\n            \"name\": \"Bonsai\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"HARD\",\n            \"categoryName\": \"Succulents\",\n            \"description\": \"A healthy and beautiful Ficus looking for a new home.\",\n            \"id\": 15,\n            \"name\": \"Ficus\",\n            \"ownerName\": \"Piyumi Hansika\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Herbs\",\n            \"description\": \"A healthy and beautiful Ivy looking for a new home.\",\n            \"id\": 16,\n            \"name\": \"Ivy\",\n            \"ownerName\": \"Nimali Perera\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Indoor Foliage\",\n            \"description\": \"A healthy and beautiful Bamboo looking for a new home.\",\n            \"id\": 17,\n            \"name\": \"Bamboo\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Indoor Foliage\",\n            \"description\": \"A healthy and beautiful Thyme looking for a new home.\",\n            \"id\": 18,\n            \"name\": \"Thyme\",\n            \"ownerName\": \"Nimali Perera\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"MEDIUM\",\n            \"categoryName\": \"Succulents\",\n            \"description\": \"A healthy and beautiful Rosemary looking for a new home.\",\n            \"id\": 19,\n            \"name\": \"Rosemary\",\n            \"ownerName\": \"Ruwanthi Fernando\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"HARD\",\n            \"categoryName\": \"Cacti\",\n            \"description\": \"A healthy and beautiful Lavender looking for a new home.\",\n            \"id\": 20,\n            \"name\": \"Lavender\",\n            \"ownerName\": \"Kusal Mendis\",\n            \"status\": \"AVAILABLE\"\n        },\n        {\n            \"careDifficulty\": \"EASY\",\n            \"categoryName\": \"Flowering\",\n            \"description\": \"A healthy and beautiful Philodendron looking for a new home.\",\n            \"id\": 21,\n            \"name\": \"Philodendron\",\n            \"ownerName\": \"Ruwanthi Fernando\",\n            \"status\": \"AVAILABLE\"\n        }\n    ],\n    \"timestamp\": \"2026-02-19T18:09:36.186287700Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET Plant by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/plants/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plants",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET Plant by ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/plants/22",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "plants",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:12:58 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Plant found\",\n    \"data\": {\n        \"careDifficulty\": \"EASY\",\n        \"categoryName\": \"Succulents\",\n        \"description\": \"Fast growing trailing plant!\",\n        \"id\": 22,\n        \"name\": \"Golden Pothos\",\n        \"ownerName\": \"Saman Kumara\",\n        \"status\": \"AVAILABLE\"\n    },\n    \"timestamp\": \"2026-02-19T18:12:58.472092700Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "POST Create Plant",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Golden Pothos\",\r\n    \"description\": \"Fast growing trailing plant!\",\r\n    \"careDifficulty\": \"EASY\",\r\n    \"categoryId\": 1,\r\n    \"memberId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/plants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plants"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "POST Create Plant",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Golden Pothos\",\r\n    \"description\": \"Fast growing trailing plant!\",\r\n    \"careDifficulty\": \"EASY\",\r\n    \"categoryId\": 1,\r\n    \"memberId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/plants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "plants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:11:17 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Plant created\",\n    \"data\": {\n        \"careDifficulty\": \"EASY\",\n        \"categoryName\": null,\n        \"description\": \"Fast growing trailing plant!\",\n        \"id\": 22,\n        \"name\": \"Golden Pothos\",\n        \"ownerName\": null,\n        \"status\": \"AVAILABLE\"\n    },\n    \"timestamp\": \"2026-02-19T18:11:17.698913100Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PUT Update Plant",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Snake Plant Updated\",\r\n    \"description\": \"Updated description\",\r\n    \"careDifficulty\": \"HARD\",\r\n    \"categoryId\": 1,\r\n    \"memberId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/plants/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plants",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PUT Update Plant",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Snake Plant Updated\",\r\n    \"description\": \"Updated description\",\r\n    \"careDifficulty\": \"HARD\",\r\n    \"categoryId\": 1,\r\n    \"memberId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/plants/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "plants",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:23:02 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Plant updated\",\n    \"data\": {\n        \"careDifficulty\": \"HARD\",\n        \"categoryName\": \"Succulents\",\n        \"description\": \"Updated description\",\n        \"id\": 1,\n        \"name\": \"Snake Plant Updated\",\n        \"ownerName\": \"Nimali Perera\",\n        \"status\": \"AVAILABLE\"\n    },\n    \"timestamp\": \"2026-02-19T18:23:02.820805700Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH Partial Update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"status\": \"PENDING_EXCHANGE\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/plants/1/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plants",
+                "1",
+                "status"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PATCH Partial Update",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"status\": \"PENDING_EXCHANGE\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/plants/1/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "plants",
+                    "1",
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:26:25 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Plant status updated\",\n    \"data\": {\n        \"careDifficulty\": \"HARD\",\n        \"categoryName\": \"Succulents\",\n        \"description\": \"Updated description\",\n        \"id\": 1,\n        \"name\": \"Snake Plant Updated\",\n        \"ownerName\": \"Nimali Perera\",\n        \"status\": \"PENDING_EXCHANGE\"\n    },\n    \"timestamp\": \"2026-02-19T18:26:25.107082500Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "DELETE Remove Plant",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/plants/21",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "plants",
+                "21"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "DELETE Remove Plant",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/plants/21",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "plants",
+                    "21"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:27:59 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Plant deleted successfully\",\n    \"data\": null,\n    \"timestamp\": \"2026-02-19T18:27:59.946729800Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exchange Requests",
+      "item": [
+        {
+          "name": "POST Create Request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"requesterId\": 2,\r\n    \"plantId\": 1,\r\n    \"message\": \"Hi, I would love to trade my Peace Lily for this!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/requests",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "requests"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "POST Create Request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"requesterId\": 2,\r\n    \"plantId\": 1,\r\n    \"message\": \"Hi, I would love to trade my Peace Lily for this!\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/requests",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:33:48 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Exchange request submitted\",\n    \"data\": {\n        \"id\": 3,\n        \"message\": \"Hi, I would love to trade my Peace Lily for this!\",\n        \"plantName\": null,\n        \"requesterName\": null,\n        \"status\": \"PENDING\"\n    },\n    \"timestamp\": \"2026-02-19T18:33:48.282819600Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET My Incoming Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/requests/incoming/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "incoming",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET My Incoming Requests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/requests/incoming/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "incoming",
+                    "1"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:35:03 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Incoming requests retrieved\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"message\": \"Is this Peace Lily still available?\",\n            \"plantName\": \"Peace Lily\",\n            \"requesterName\": \"Amila Silva\",\n            \"status\": \"COMPLETED\"\n        }\n    ],\n    \"timestamp\": \"2026-02-19T18:35:03.465421900Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET My Outgoing Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/requests/outgoing/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "outgoing",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET My Outgoing Requests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/requests/outgoing/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "outgoing",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:36:01 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Outgoing requests retrieved\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"message\": \"Hi, I would love to trade my Peace Lily for this!\",\n            \"plantName\": \"Aloe Vera\",\n            \"requesterName\": \"Nimali Perera\",\n            \"status\": \"PENDING\"\n        }\n    ],\n    \"timestamp\": \"2026-02-19T18:36:01.875166500Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH Accept Request",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/requests/1/status?status=ACCEPTED",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "1",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ACCEPTED"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PATCH Accept Request",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/requests/1/status?status=ACCEPTED",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "1",
+                    "status"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "ACCEPTED"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:41:03 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Request status updated\",\n    \"data\": {\n        \"id\": 1,\n        \"message\": \"Hi! I would love to trade my Aloe Vera for your Snake Plant.\",\n        \"plantName\": \"Snake Plant\",\n        \"requesterName\": \"Saman Kumara\",\n        \"status\": \"ACCEPTED\"\n    },\n    \"timestamp\": \"2026-02-19T18:41:03.357821700Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH Reject Request",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/requests/1/status?status=REJECTED",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "1",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "REJECTED"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PATCH Reject Request",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/requests/1/status?status=REJECTED",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "1",
+                    "status"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "REJECTED"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:43:16 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Request status updated\",\n    \"data\": {\n        \"id\": 1,\n        \"message\": \"Hi! I would love to trade my Aloe Vera for your Snake Plant.\",\n        \"plantName\": \"Snake Plant\",\n        \"requesterName\": \"Saman Kumara\",\n        \"status\": \"REJECTED\"\n    },\n    \"timestamp\": \"2026-02-19T18:43:16.305140Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "PATCH Complete Exchange",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/requests/1/status?status=COMPLETED",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "requests",
+                "1",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "COMPLETED"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "PATCH Complete Exchange",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/requests/1/status?status=COMPLETED",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "requests",
+                    "1",
+                    "status"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "COMPLETED"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:44:38 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Request status updated\",\n    \"data\": {\n        \"id\": 1,\n        \"message\": \"Hi! I would love to trade my Aloe Vera for your Snake Plant.\",\n        \"plantName\": \"Snake Plant\",\n        \"requesterName\": \"Saman Kumara\",\n        \"status\": \"COMPLETED\"\n    },\n    \"timestamp\": \"2026-02-19T18:44:38.993753200Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "item": [
+        {
+          "name": "POST Submit Feedback",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"reviewer\": {\"id\": 1},\r\n    \"reviewedMember\": {\"id\": 2},\r\n    \"rating\": 5,\r\n    \"comments\": \"Great trade! The plant was incredibly healthy.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/feedback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "feedback"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "POST Submit Feedback",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"reviewer\": {\"id\": 1},\r\n    \"reviewedMember\": {\"id\": 2},\r\n    \"rating\": 5,\r\n    \"comments\": \"Great trade! The plant was incredibly healthy.\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/feedback",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "feedback"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:47:36 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Feedback submitted successfully\",\n    \"data\": {\n        \"id\": 2,\n        \"reviewer\": {\n            \"id\": 1,\n            \"email\": null,\n            \"password\": null,\n            \"name\": null,\n            \"neighborhood\": null,\n            \"plants\": null,\n            \"requests\": null\n        },\n        \"reviewedMember\": {\n            \"id\": 2,\n            \"email\": null,\n            \"password\": null,\n            \"name\": null,\n            \"neighborhood\": null,\n            \"plants\": null,\n            \"requests\": null\n        },\n        \"rating\": 5,\n        \"comments\": \"Great trade! The plant was incredibly healthy.\",\n        \"createdAt\": \"2026-02-20T00:17:36.78083\"\n    },\n    \"timestamp\": \"2026-02-19T18:47:36.786396800Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "GET Member Feedback",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/feedback/member/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "feedback",
+                "member",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "GET Member Feedback",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/v1/feedback/member/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "feedback",
+                    "member",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Vary",
+                  "value": "Origin"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Method"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Access-Control-Request-Headers"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "X-XSS-Protection",
+                  "value": "0"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, no-store, max-age=0, must-revalidate"
+                },
+                {
+                  "key": "Pragma",
+                  "value": "no-cache"
+                },
+                {
+                  "key": "Expires",
+                  "value": "0"
+                },
+                {
+                  "key": "X-Frame-Options",
+                  "value": "DENY"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 19 Feb 2026 18:53:57 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"success\": true,\n    \"message\": \"Feedback retrieved successfully\",\n    \"data\": [\n        {\n            \"comments\": \"Great trade! The plant was incredibly healthy.\",\n            \"id\": 2,\n            \"rating\": 5,\n            \"reviewedMemberId\": 2,\n            \"reviewedMemberName\": \"Nimali Perera\",\n            \"reviewerId\": 1,\n            \"reviewerName\": \"Saman Kumara\"\n        }\n    ],\n    \"timestamp\": \"2026-02-19T18:53:57.595628700Z\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

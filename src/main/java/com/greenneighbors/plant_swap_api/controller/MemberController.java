@@ -63,4 +63,20 @@ public class MemberController {
         ApiResponse<List<MemberDTO>> response = new ApiResponse<>(true, "Members retrieved successfully", dtos);
         return ResponseEntity.ok(response);
     }
+
+    // 4. Get Member by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<MemberDTO>> getMemberById(@PathVariable Long id) {
+        Member member = memberService.getMemberById(id);
+        ApiResponse<MemberDTO> response = new ApiResponse<>(true, "Member found", convertToDTO(member));
+        return ResponseEntity.ok(response);
+    }
+
+    // 5. Update Member
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<MemberDTO>> updateMember(@PathVariable Long id, @RequestBody Member updateData) {
+        Member updatedMember = memberService.updateMember(id, updateData);
+        ApiResponse<MemberDTO> response = new ApiResponse<>(true, "Member updated", convertToDTO(updatedMember));
+        return ResponseEntity.ok(response);
+    }
 }
