@@ -19,6 +19,10 @@ public class ExchangeRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(length = 500)
+    private String message;
+
     @Enumerated(EnumType.STRING)
     private RequestStatus status = RequestStatus.PENDING;
 
