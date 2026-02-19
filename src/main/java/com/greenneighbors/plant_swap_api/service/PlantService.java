@@ -1,5 +1,6 @@
 package com.greenneighbors.plant_swap_api.service;
 
+import com.greenneighbors.plant_swap_api.exception.ResourceNotFoundException;
 import com.greenneighbors.plant_swap_api.model.Plant;
 import com.greenneighbors.plant_swap_api.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class PlantService {
     // Read One
     public Plant getPlantById(Long id) {
         return plantRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Plant not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Plant not found with ID: " + id));
     }
 
     // Read by Owner
