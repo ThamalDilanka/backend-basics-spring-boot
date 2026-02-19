@@ -1,17 +1,18 @@
 package com.greenneighbors.plant_swap_api.service;
 
+import com.greenneighbors.plant_swap_api.config.JwtUtil;
+import com.greenneighbors.plant_swap_api.exception.BusinessRuleViolationException;
+import com.greenneighbors.plant_swap_api.exception.DuplicateResourceException;
+import com.greenneighbors.plant_swap_api.exception.ResourceNotFoundException;
 import com.greenneighbors.plant_swap_api.model.Member;
 import com.greenneighbors.plant_swap_api.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-
- import com.greenneighbors.plant_swap_api.config.JwtUtil;
- import java.util.Map;
- import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class MemberService {
@@ -20,56 +21,34 @@ public class MemberService {
     private MemberRepository memberRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private JwtUtil jwtUtil;
 
-    // Register a new member
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    // 1. Register Member (Check for Duplicates!)
     public Member registerMember(Member member) {
-
-        // Check if email is already taken
         if (memberRepository.findByEmail(member.getEmail()).isPresent()) {
-            throw new RuntimeException("Email already taken!");
+            throw new DuplicateResourceException("Email is already in use: " + member.getEmail());
         }
-
-        // SCRAMBLE the password
-        String plainPassword = member.getPassword();
-        String scrambledPassword = passwordEncoder.encode(plainPassword);
-
-        //  Set the scrambled password back to the member object
-        member.setPassword(scrambledPassword);
-
-        // Save to database (Only hash version saved)
+        member.setPassword(passwordEncoder.encode(member.getPassword()));
         return memberRepository.save(member);
     }
 
-
-    // Get all members
+    // 2. Get All Members
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
 
-    // Get member by ID
-    public Optional<Member> getMemberById(Long id) {
-        return memberRepository.findById(id);
-    }
-
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    // Login Member
+    // 3. Login Member (Handle Not Found and Bad Passwords)
     public Map<String, String> loginMember(String email, String plainPassword) {
-        // Find user by email
         Member member = memberRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Member not found with email: " + email));
 
-        // Check if password matches
         if (!passwordEncoder.matches(plainPassword, member.getPassword())) {
-            throw new RuntimeException("Invalid password!");
+            throw new BusinessRuleViolationException("Invalid password provided.");
         }
 
-        // If it matches, generate JWT
         String token = jwtUtil.generateToken(email);
-
-        // Return token to the user
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
         response.put("email", email);
