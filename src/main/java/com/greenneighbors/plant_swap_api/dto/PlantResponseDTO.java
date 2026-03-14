@@ -2,6 +2,8 @@ package com.greenneighbors.plant_swap_api.dto;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class PlantResponseDTO {
     private Long id;
@@ -11,4 +13,5 @@ public class PlantResponseDTO {
     private String careDifficulty;
     private String categoryName;
     private String ownerName;
+    private LocalDateTime createdAt;
 }
