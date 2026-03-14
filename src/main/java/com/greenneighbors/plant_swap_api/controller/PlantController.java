@@ -3,9 +3,12 @@ package com.greenneighbors.plant_swap_api.controller;
 import com.greenneighbors.plant_swap_api.dto.ApiResponse;
 import com.greenneighbors.plant_swap_api.dto.PlantRequestDTO;
 import com.greenneighbors.plant_swap_api.dto.PlantResponseDTO;
+import com.greenneighbors.plant_swap_api.exception.ResourceNotFoundException;
 import com.greenneighbors.plant_swap_api.model.Category;
 import com.greenneighbors.plant_swap_api.model.Member;
 import com.greenneighbors.plant_swap_api.model.Plant;
+import com.greenneighbors.plant_swap_api.repository.CategoryRepository;
+import com.greenneighbors.plant_swap_api.repository.MemberRepository;
 import com.greenneighbors.plant_swap_api.service.PlantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,12 @@ public class PlantController {
     @Autowired
     private PlantService plantService;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private MemberRepository memberRepository;
+
     // Helper to convert Entity to DTO
     private PlantResponseDTO convertToDTO(Plant plant) {
         PlantResponseDTO dto = new PlantResponseDTO();
@@ -30,6 +39,8 @@ public class PlantController {
         dto.setName(plant.getName());
         dto.setDescription(plant.getDescription());
         dto.setStatus(plant.getStatus().name());
+        dto.setCreatedAt(plant.getCreatedAt());
+
         if (plant.getCareDifficulty() != null) {
             dto.setCareDifficulty(plant.getCareDifficulty().name());
         }
@@ -47,8 +58,11 @@ public class PlantController {
         plant.setCareDifficulty(requestDTO.getCareDifficulty());
         plant.setStatus(Plant.PlantStatus.AVAILABLE);
 
-        Category category = new Category(); category.setId(requestDTO.getCategoryId());
-        Member member = new Member(); member.setId(requestDTO.getMemberId());
+        Category category = categoryRepository.findById(requestDTO.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+        Member member = memberRepository.findById(requestDTO.getMemberId())
+                .orElseThrow(() -> new ResourceNotFoundException("Member not found"));
+
         plant.setCategory(category);
         plant.setMember(member);
 
