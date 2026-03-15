@@ -76,6 +76,9 @@ export default function Navbar() {
               Add Plant
             </Button>
           </Link>
+          <Link to="/requests">
+    <Button variant="ghost" className="text-slate-600">Swap Requests</Button>
+          </Link>
           {isLoggedIn ? (
             <div className="relative profile-menu">
               <button

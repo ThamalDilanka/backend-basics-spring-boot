@@ -6,6 +6,7 @@ import AddPlant from "./pages/AddPlant";
 import SignUp from "@/pages/SignUp.jsx";
 import PlantDetails from "./pages/PlantDetails";
 import Profile from "./pages/Profile";
+import Requests from "./pages/Requests";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/add-plant" element={<AddPlant />} />
             <Route path="/plant/:id" element={<PlantDetails />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/requests" element={<Requests />} />
 
           </Routes>
         </main>
