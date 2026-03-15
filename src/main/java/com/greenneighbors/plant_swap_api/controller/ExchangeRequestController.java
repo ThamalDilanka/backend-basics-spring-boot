@@ -29,8 +29,20 @@ public class ExchangeRequestController {
         dto.setId(request.getId());
         dto.setMessage(request.getMessage());
         dto.setStatus(request.getStatus().name());
-        if (request.getRequester() != null) dto.setRequesterName(request.getRequester().getName());
-        if (request.getPlant() != null) dto.setPlantName(request.getPlant().getName());
+        if (request.getRequester() != null) {
+            dto.setRequesterName(request.getRequester().getName());
+            dto.setRequesterImageUrl(request.getRequester().getProfilePicture());
+        }
+        if (request.getPlant() != null) {
+            dto.setPlantName(request.getPlant().getName());
+            dto.setPlantImageUrl(request.getPlant().getImageUrl());
+            if (request.getPlant().getMember() != null) {
+                dto.setOwnerName(request.getPlant().getMember().getName());
+                dto.setOwnerImageUrl(request.getPlant().getMember().getProfilePicture());
+            }
+        }
+        if (request.getCreatedAt() != null)
+            dto.setDate(request.getCreatedAt().toString());
         return dto;
     }
 
@@ -41,8 +53,10 @@ public class ExchangeRequestController {
         request.setMessage(dto.getMessage());
         request.setStatus(ExchangeRequest.RequestStatus.PENDING);
 
-        Member requester = new Member(); requester.setId(dto.getRequesterId());
-        Plant plant = new Plant(); plant.setId(dto.getPlantId());
+        Member requester = new Member();
+        requester.setId(dto.getRequesterId());
+        Plant plant = new Plant();
+        plant.setId(dto.getPlantId());
 
         request.setRequester(requester);
         request.setPlant(plant);
