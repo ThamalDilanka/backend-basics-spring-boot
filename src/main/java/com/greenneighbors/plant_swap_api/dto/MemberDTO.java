@@ -8,4 +8,5 @@ public class MemberDTO {
     private String name;
     private String email;
     private String neighborhood;
+    private String profilePicture;
 }

@@ -32,12 +32,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessRuleViolationException.class)
     public ResponseEntity<ApiResponse<Void>> handleBusinessRuleViolation(BusinessRuleViolationException ex) {
         ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null);
-        return new ResponseEntity<>(response, HttpStatus.UNPROCESSABLE_ENTITY);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(422));
     }
 
     // 4. Handle Validation Errors from @Valid (400)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
 
         // Grab all the specific @NotBlank or @NotNull messages

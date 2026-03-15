@@ -8,7 +8,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "plants")
@@ -25,6 +24,9 @@ public class Plant {
     private String name;
 
     private String description;
+
+    @Column(nullable = true)
+    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     private PlantStatus status = PlantStatus.AVAILABLE;
@@ -48,6 +50,7 @@ public class Plant {
 
     @Enumerated(EnumType.STRING)
     private CareDifficulty careDifficulty;
+
     public enum CareDifficulty {
         EASY, MEDIUM, HARD
     }

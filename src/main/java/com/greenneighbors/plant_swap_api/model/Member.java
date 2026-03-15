@@ -29,6 +29,9 @@ public class Member {
 
     private String neighborhood;
 
+    @Column(nullable = true)
+    private String profilePicture;
+
     @OneToMany(mappedBy = "member")
     private List<Plant> plants;
 

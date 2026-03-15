@@ -38,14 +38,20 @@ public class PlantController {
         dto.setId(plant.getId());
         dto.setName(plant.getName());
         dto.setDescription(plant.getDescription());
+        dto.setImageUrl(plant.getImageUrl());
         dto.setStatus(plant.getStatus().name());
         dto.setCreatedAt(plant.getCreatedAt());
 
         if (plant.getCareDifficulty() != null) {
             dto.setCareDifficulty(plant.getCareDifficulty().name());
         }
-        if (plant.getCategory() != null) dto.setCategoryName(plant.getCategory().getName());
-        if (plant.getMember() != null) dto.setOwnerName(plant.getMember().getName());
+        if (plant.getCategory() != null)
+            dto.setCategoryName(plant.getCategory().getName());
+        if (plant.getMember() != null) {
+            dto.setOwnerId(plant.getMember().getId());
+            dto.setOwnerName(plant.getMember().getName());
+            dto.setOwnerImageUrl(plant.getMember().getProfilePicture());
+        }
         return dto;
     }
 
@@ -55,6 +61,7 @@ public class PlantController {
         Plant plant = new Plant();
         plant.setName(requestDTO.getName());
         plant.setDescription(requestDTO.getDescription());
+        plant.setImageUrl(requestDTO.getImageUrl());
         plant.setCareDifficulty(requestDTO.getCareDifficulty());
         plant.setStatus(Plant.PlantStatus.AVAILABLE);
 
@@ -87,10 +94,12 @@ public class PlantController {
 
     // 4. UPDATE Plant
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<PlantResponseDTO>> updatePlant(@PathVariable Long id, @Valid @RequestBody PlantRequestDTO requestDTO) {
+    public ResponseEntity<ApiResponse<PlantResponseDTO>> updatePlant(@PathVariable Long id,
+            @Valid @RequestBody PlantRequestDTO requestDTO) {
         Plant updatedData = new Plant();
         updatedData.setName(requestDTO.getName());
         updatedData.setDescription(requestDTO.getDescription());
+        updatedData.setImageUrl(requestDTO.getImageUrl());
         updatedData.setCareDifficulty(requestDTO.getCareDifficulty());
 
         Plant savedPlant = plantService.updatePlant(id, updatedData);
@@ -112,7 +121,7 @@ public class PlantController {
         return ResponseEntity.ok(new ApiResponse<>(true, "Member's plants retrieved", dtos));
     }
 
-    //  Partial Update (Status only)
+    // Partial Update (Status only)
     @PatchMapping("/{id}/status")
     public ResponseEntity<ApiResponse<PlantResponseDTO>> updatePlantStatus(
             @PathVariable Long id,

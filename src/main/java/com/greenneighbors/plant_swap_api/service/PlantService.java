@@ -40,6 +40,7 @@ public class PlantService {
         Plant existingPlant = getPlantById(id);
         existingPlant.setName(updatedData.getName());
         existingPlant.setDescription(updatedData.getDescription());
+        existingPlant.setImageUrl(updatedData.getImageUrl());
         existingPlant.setCareDifficulty(updatedData.getCareDifficulty());
         return plantRepository.save(existingPlant);
     }
