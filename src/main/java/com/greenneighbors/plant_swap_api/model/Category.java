@@ -1,5 +1,7 @@
 package com.greenneighbors.plant_swap_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +23,7 @@ public class Category {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Plant> plants;
 }

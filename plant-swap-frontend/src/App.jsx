@@ -7,6 +7,7 @@ import SignUp from "@/pages/SignUp.jsx";
 import PlantDetails from "./pages/PlantDetails";
 import Profile from "./pages/Profile";
 import Requests from "./pages/Requests";
+import EditPlant from "./pages/EditPlant";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/plant/:id" element={<PlantDetails />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/requests" element={<Requests />} />
+            <Route path="/edit-plant/:id" element={<EditPlant />} />
 
           </Routes>
         </main>
