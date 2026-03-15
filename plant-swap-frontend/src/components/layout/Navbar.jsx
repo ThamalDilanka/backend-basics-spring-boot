@@ -133,14 +133,6 @@ export default function Navbar() {
                       <User size={16} />
                       My Profile
                     </Link>
-                    <Link
-                      to="/settings"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                      onClick={() => setShowPopup(false)}
-                    >
-                      <Settings size={16} />
-                      Settings
-                    </Link>
                     <hr className="my-1 border-slate-100" />
                     <button
                       onClick={handleLogout}
