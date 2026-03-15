@@ -13,13 +13,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-// Hardcoded fallback categories just in case the database is empty!
+// Hardcoded fallback categories just in case the database fetch fails
 const FALLBACK_CATEGORIES = [
-  { id: 1, name: "Indoor Plants" },
-  { id: 2, name: "Outdoor Plants" },
-  { id: 3, name: "Succulents & Cacti" },
-  { id: 4, name: "Herbs & Edibles" },
-  { id: 5, name: "Flowering Plants" },
+  { id: 1, name: "Succulents" },
+  { id: 2, name: "Indoor Foliage" },
+  { id: 3, name: "Herbs" },
+  { id: 4, name: "Flowering" },
+  { id: 5, name: "Cacti" },
+  { id: 6, name: "Indoor Plants" },
+  { id: 7, name: "Outdoor Plants" },
 ];
 
 export default function AddPlant() {
@@ -55,8 +57,9 @@ export default function AddPlant() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPlant),
       });
-      if (!response.ok) throw new Error("Failed to add plant");
-      return response.json();
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Failed to add plant");
+      return data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["plants"] });
@@ -110,11 +113,11 @@ export default function AddPlant() {
         careDifficulty: careDifficulty.toUpperCase(),
         categoryId: parseInt(categoryId),
         memberId: parsedMemberId,
-        imageUrl: imageUrl,
+        imageUrl: imageUrl || null,
       });
     } catch (error) {
       console.error("Error during plant creation:", error);
-      alert("Upload failed: " + error.message);
+      alert("Error: " + error.message);
     } finally {
       setUploading(false);
     }

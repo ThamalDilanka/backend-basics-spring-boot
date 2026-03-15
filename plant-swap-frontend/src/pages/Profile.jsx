@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/card";
 
 export default function Profile() {
+  const queryClient = useQueryClient();
+
   // Fetch the plants
   const { isPending, error, data } = useQuery({
     queryKey: ["plants"],
@@ -31,6 +33,30 @@ export default function Profile() {
   const myPlants = plantArray.filter(
     (plant) => plant.ownerId === loggedInMemberId,
   );
+
+  // TanStack Mutation for deleting a plant
+  const deletePlantMutation = useMutation({
+    mutationFn: async (plantId) => {
+      const response = await fetch(`/api/v1/plants/${plantId}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete plant");
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["plants"] });
+      alert("Plant deleted successfully!");
+    },
+    onError: (error) => {
+      alert("Error deleting plant: " + error.message);
+    },
+  });
+
+  const handleDelete = (id, name) => {
+    if (window.confirm(`Are you sure you want to delete ${name}?`)) {
+      deletePlantMutation.mutate(id);
+    }
+  };
 
   return (
     <div className="container mx-auto p-8 max-w-6xl mt-6">
@@ -107,11 +133,19 @@ export default function Profile() {
               </span>
             </CardContent>
             <CardFooter className="flex gap-2">
-              <Link to={`/plant/${plant.id}`} className="w-1/2">
+              <Link to={`/edit-plant/${plant.id}`} className="w-1/2">
                 <Button variant="outline" className="w-full border-slate-300">
-                  View
+                  Edit
                 </Button>
               </Link>
+              <Button
+                variant="destructive"
+                className="w-1/2"
+                onClick={() => handleDelete(plant.id, plant.name)}
+                disabled={deletePlantMutation.isPending}
+              >
+                Delete
+              </Button>
             </CardFooter>
           </Card>
         ))}

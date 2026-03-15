@@ -32,7 +32,15 @@ public class DataInitializer implements CommandLineRunner {
         // Ensure categories always exist
         if (categoryRepository.count() == 0) {
             System.out.println("🌱 Categories are empty. Seeding initial categories...");
-            String[] catNames = { "Succulents", "Indoor Foliage", "Herbs", "Flowering", "Cacti" };
+            String[] catNames = {
+                    "Succulents",
+                    "Indoor Foliage",
+                    "Herbs",
+                    "Flowering",
+                    "Cacti",
+                    "Indoor Plants",
+                    "Outdoor Plants"
+            };
             for (String name : catNames) {
                 Category cat = new Category();
                 cat.setName(name);

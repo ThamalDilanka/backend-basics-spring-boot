@@ -1,13 +1,35 @@
-﻿import { useParams, Link, useNavigate } from "react-router-dom";
+﻿import { useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+
+// Mock feedback data
+const MOCK_FEEDBACK = [
+  {
+    id: 1,
+    user: "Sarah J.",
+    text: "Wow, this looks so healthy! Would you trade for a Snake Plant?",
+    date: "2 days ago",
+  },
+  {
+    id: 2,
+    user: "Mike T.",
+    text: "How tall is it currently?",
+    date: "Yesterday",
+  },
+];
 
 export default function PlantDetails() {
   const navigate = useNavigate();
   const loggedInMemberId = Number(localStorage.getItem("memberId"));
 
   const { id } = useParams();
+
+  // Feedback state
+  const [newComment, setNewComment] = useState("");
+  const [rating, setRating] = useState(5);
 
   const {
     isPending,
@@ -20,6 +42,46 @@ export default function PlantDetails() {
       if (!response.ok) throw new Error("Failed to fetch plant details");
       const json = await response.json();
       return json.data || json;
+    },
+  });
+
+  const { data: feedbacks = [], refetch: refetchFeedbacks } = useQuery({
+    queryKey: ["plantFeedbacks", plant?.ownerId],
+    queryFn: async () => {
+      if (!plant?.ownerId) return [];
+      const res = await fetch(`/api/v1/feedback/member/${plant.ownerId}`);
+      if (!res.ok) return [];
+      const json = await res.json();
+      return (json.data || []).map((f) => ({
+        id: f.id,
+        user: f.reviewerName,
+        text: f.comments,
+        // Since owner isn't technically rating, we could maybe not show stars if they are the owner,
+        // but for now let's just use stars for all, as requested by replacing the text rating.
+        date: f.rating ? "⭐".repeat(f.rating) : "",
+      }));
+    },
+    enabled: !!plant?.ownerId,
+  });
+
+  const addFeedbackMutation = useMutation({
+    mutationFn: async (payload) => {
+      const response = await fetch(`/api/v1/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error("Failed to post feedback");
+      return response.json();
+    },
+    onSuccess: () => {
+      alert("Feedback posted successfully!");
+      setNewComment("");
+      setRating(5);
+      refetchFeedbacks();
+    },
+    onError: (err) => {
+      alert(err.message);
     },
   });
 
@@ -59,6 +121,23 @@ export default function PlantDetails() {
     });
   };
 
+  // Feedback handler
+  const handleAddFeedback = (e) => {
+    e.preventDefault();
+    if (!loggedInMemberId) {
+      alert("Please login to post feedback");
+      return;
+    }
+    if (!newComment.trim()) return;
+
+    addFeedbackMutation.mutate({
+      reviewer: { id: loggedInMemberId },
+      reviewedMember: { id: plant.ownerId },
+      rating: plant.ownerId === loggedInMemberId ? 0 : rating,
+      comments: newComment,
+    });
+  };
+
   if (isPending)
     return (
       <div className="text-center mt-20 text-slate-500 text-xl">
@@ -89,7 +168,9 @@ export default function PlantDetails() {
           Back to Market
         </Button>
       </Link>
-      <Card className="flex flex-col md:flex-row overflow-hidden shadow-lg border-slate-200">
+
+      {/* MAIN PLANT CARD (Untouched) */}
+      <Card className="flex flex-col md:flex-row overflow-hidden shadow-lg border-slate-200 mb-12">
         <div className="md:w-1/2 bg-slate-100 flex items-center justify-center min-h-[400px] border-r border-slate-200">
           <img
             src={plant.imageUrl || "/plant.png"}
@@ -158,6 +239,84 @@ export default function PlantDetails() {
           </div>
         </div>
       </Card>
+
+      {/* NEW FEEDBACK SECTION */}
+      <div className="max-w-3xl">
+        <h2 className="text-2xl font-bold text-slate-800 mb-6">
+          Community Feedback & Questions
+        </h2>
+
+        {/* The List of Comments */}
+        <div className="space-y-4 mb-8">
+          {feedbacks.length === 0 ? (
+            <p className="text-slate-500 italic">
+              No feedback yet. Be the first to ask a question!
+            </p>
+          ) : (
+            feedbacks.map((fb) => (
+              <Card key={fb.id} className="bg-slate-50 border-slate-200">
+                <CardContent className="p-4">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-semibold text-slate-700">
+                      {fb.user}
+                    </span>
+                    <span className="text-xs text-slate-400">{fb.date}</span>
+                  </div>
+                  <p className="text-slate-600">{fb.text}</p>
+                </CardContent>
+              </Card>
+            ))
+          )}
+        </div>
+
+        {/* The Form to Add New Feedback */}
+        <form
+          onSubmit={handleAddFeedback}
+          className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"
+        >
+          <h3 className="text-lg font-semibold text-slate-700 mb-3">
+            {plant.ownerId === loggedInMemberId
+              ? "Reply to questions"
+              : "Leave a comment"}
+          </h3>
+          {plant.ownerId !== loggedInMemberId && (
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                Rating
+              </label>
+              <div className="flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    type="button"
+                    onClick={() => setRating(star)}
+                    className={`text-3xl hover:scale-110 transition-transform ${star <= rating ? "text-yellow-400" : "text-slate-300"}`}
+                  >
+                    ★
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          <Textarea
+            placeholder={
+              plant.ownerId === loggedInMemberId
+                ? "Answer questions or add updates..."
+                : "Ask a question about this plant or leave a review..."
+            }
+            className="mb-4"
+            rows={3}
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+          <div className="flex justify-end">
+            <Button type="submit" className="bg-slate-800 hover:bg-slate-900">
+              Post Feedback
+            </Button>
+          </div>
+        </form>
+      </div>
+      {/* END OF FEEDBACK SECTION */}
     </div>
   );
 }
