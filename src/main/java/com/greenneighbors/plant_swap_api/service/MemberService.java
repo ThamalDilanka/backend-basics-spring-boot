@@ -51,21 +51,30 @@ public class MemberService {
         String token = jwtUtil.generateToken(email);
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
+        response.put("memberId", String.valueOf(member.getId()));
         response.put("email", email);
+        response.put("name", member.getName()); // <-- ADDING NAME HERE
+        if (member.getProfilePicture() != null) {
+            response.put("profilePicture", member.getProfilePicture());
+        }
         return response;
     }
 
     // 4. Get Member by ID
     public Member getMemberById(Long id) {
         return memberRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Member not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Member not found with id: " + id));
     }
 
     // 5. Update Member
     public Member updateMember(Long id, Member updatedData) {
         Member existingMember = getMemberById(id);
-        existingMember.setName(updatedData.getName());
-        existingMember.setNeighborhood(updatedData.getNeighborhood());
+        if (updatedData.getName() != null) {
+            existingMember.setName(updatedData.getName());
+        }
+        if (updatedData.getNeighborhood() != null) {
+            existingMember.setNeighborhood(updatedData.getNeighborhood());
+        }
         return memberRepository.save(existingMember);
     }
 }

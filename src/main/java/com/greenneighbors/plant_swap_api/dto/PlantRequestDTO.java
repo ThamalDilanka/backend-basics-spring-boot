@@ -13,6 +13,8 @@ public class PlantRequestDTO {
 
     private String description;
 
+    private String imageUrl;
+
     @NotNull(message = "Care difficulty must be valid enum value (EASY, MEDIUM, HARD)")
     private CareDifficulty careDifficulty;
 

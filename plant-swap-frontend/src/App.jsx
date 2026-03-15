@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import AddPlant from "./pages/AddPlant";
 import SignUp from "@/pages/SignUp.jsx";
+import PlantDetails from "./pages/PlantDetails";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
             <Route path="/add-plant" element={<AddPlant />} />
+            <Route path="/plant/:id" element={<PlantDetails />} />
+            <Route path="/profile" element={<Profile />} />
 
           </Routes>
         </main>

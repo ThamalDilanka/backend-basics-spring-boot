@@ -11,35 +11,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Component
+@Component // Skipped data seeding changed back to normal
 public class DataInitializer implements CommandLineRunner {
 
-    @Autowired private MemberRepository memberRepository;
-    @Autowired private PlantRepository plantRepository;
-    @Autowired private CategoryRepository categoryRepository;
-    @Autowired private ExchangeRequestRepository requestRepository;
-    @Autowired private FeedbackRepository feedbackRepository;
+    @Autowired
+    private MemberRepository memberRepository;
+    @Autowired
+    private PlantRepository plantRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private ExchangeRequestRepository requestRepository;
+    @Autowired
+    private FeedbackRepository feedbackRepository;
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public void run(String... args) throws Exception {
+        // Ensure categories always exist
+        if (categoryRepository.count() == 0) {
+            System.out.println("🌱 Categories are empty. Seeding initial categories...");
+            String[] catNames = { "Succulents", "Indoor Foliage", "Herbs", "Flowering", "Cacti" };
+            for (String name : catNames) {
+                Category cat = new Category();
+                cat.setName(name);
+                categoryRepository.save(cat);
+            }
+        }
+
         // Only run if the database is completely empty!
         if (memberRepository.count() == 0) {
             System.out.println("🌱 Database is empty. Seeding initial data...");
 
-            // 1. Create Categories
-            String[] catNames = {"Succulents", "Indoor Foliage", "Herbs", "Flowering", "Cacti"};
-            List<Category> categories = new ArrayList<>();
-            for (String name : catNames) {
-                Category cat = new Category();
-                cat.setName(name);
-                categories.add(categoryRepository.save(cat));
-            }
+            List<Category> categories = categoryRepository.findAll();
 
             // 2. Create Members (5-10 members)
-            String[] names = {"Saman Kumara", "Nimali Perera", "Amila Silva", "Ruwanthi Fernando", "Kusal Mendis", "Piyumi Hansika"};
-            String[] hoods = {"Colombo 03", "Kandy", "Galle", "Negombo", "Nugegoda", "Malabe"};
+            String[] names = { "Saman Kumara", "Nimali Perera", "Amila Silva", "Ruwanthi Fernando", "Kusal Mendis",
+                    "Piyumi Hansika" };
+            String[] hoods = { "Colombo 03", "Kandy", "Galle", "Negombo", "Nugegoda", "Malabe" };
             List<Member> members = new ArrayList<>();
 
             for (int i = 0; i < names.length; i++) {
@@ -52,7 +62,9 @@ public class DataInitializer implements CommandLineRunner {
             }
 
             // 3. Create Plants (20-30 plants)
-            String[] plantNames = {"Aloe Vera", "Snake Plant", "Spider Plant", "Peace Lily", "Monstera", "Pothos", "Basil", "Mint", "Jade Plant", "ZZ Plant", "Orchid", "Cactus", "Fern", "Bonsai", "Ficus", "Ivy", "Bamboo", "Thyme", "Rosemary", "Lavender", "Philodendron"};
+            String[] plantNames = { "Aloe Vera", "Snake Plant", "Spider Plant", "Peace Lily", "Monstera", "Pothos",
+                    "Basil", "Mint", "Jade Plant", "ZZ Plant", "Orchid", "Cactus", "Fern", "Bonsai", "Ficus", "Ivy",
+                    "Bamboo", "Thyme", "Rosemary", "Lavender", "Philodendron" };
             List<Plant> plants = new ArrayList<>();
             Random random = new Random();
 

@@ -28,6 +28,7 @@ public class MemberController {
         dto.setName(member.getName());
         dto.setEmail(member.getEmail());
         dto.setNeighborhood(member.getNeighborhood());
+        dto.setProfilePicture(member.getProfilePicture());
         return dto;
     }
 
