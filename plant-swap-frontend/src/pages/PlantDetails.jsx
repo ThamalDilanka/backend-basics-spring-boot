@@ -158,165 +158,315 @@ export default function PlantDetails() {
     );
 
   return (
-    <div className="container mx-auto p-8 max-w-5xl mt-6">
-      <Link to="/">
-        <Button
-          variant="ghost"
-          className="mb-6 text-slate-600 hover:text-green-700"
-        >
-          {" "}
-          Back to Market
-        </Button>
-      </Link>
+    <div className="min-h-screen w-full relative flex flex-col font-sans text-[#191c1a] selection:bg-[#006c48]/20">
+      {/* Custom Styles for the specific effects */}
+      <style>
+        {`
+          .glass-card-botanica {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+          }
+          .wood-frame-botanica {
+            background: linear-gradient(135deg, #8b5e3c 0%, #5d3f2a 100%);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 10px 25px rgba(0,0,0,0.1);
+            border: 8px solid #a67c52;
+          }
+          .liquid-fill-botanica {
+            background: linear-gradient(135deg, #006c48 0%, #2a9569 100%);
+            position: relative;
+            overflow: hidden;
+          }
+          .liquid-fill-botanica::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.15);
+            border-radius: 38%;
+            animation: wave 10s linear infinite;
+          }
+          @keyframes wave {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          .sunk-in-botanica {
+            box-shadow: inset 2px 2px 8px rgba(0,0,0,0.1), inset -1px -1px 2px rgba(255,255,255,0.5);
+          }
+          .tilted-perspective-botanica {
+            transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+            transition: transform 0.5s ease-out;
+          }
+          .tilted-perspective-botanica:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+          }
+        `}
+      </style>
 
-      {/* MAIN PLANT CARD (Untouched) */}
-      <Card className="flex flex-col md:flex-row overflow-hidden shadow-lg border-slate-200 mb-12">
-        <div className="md:w-1/2 bg-slate-100 flex items-center justify-center min-h-[400px] border-r border-slate-200">
-          <img
-            src={plant.imageUrl || "/plant.png"}
-            alt={plant.name}
-            className="object-cover w-full h-full"
-          />
-        </div>
-        <div className="md:w-1/2 p-8 flex flex-col">
-          <div className="mb-2 text-sm text-slate-500 uppercase tracking-wider font-semibold">
-            {plant.categoryName || "Uncategorized"}
+      {/* Background Elements */}
+      <div className="fixed inset-0 z-[0] overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f0f9f4] via-[#f7faf8] to-[#e8f3ec]"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#c4f0d5]/20 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-5%] right-[-5%] w-[50%] h-[50%] bg-[#d1e8da]/30 rounded-full blur-[100px]"></div>
+        <div className="absolute top-1/4 left-1/3 w-4 h-4 bg-[#006c48]/10 blur-sm rounded-full opacity-40"></div>
+        <div className="absolute top-1/2 right-1/4 w-6 h-6 bg-[#4d6356]/15 blur-md rounded-full opacity-40"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-3 h-3 bg-[#006c48]/20 blur-sm rounded-full opacity-40"></div>
+      </div>
+
+      <main className="flex-grow pt-8 pb-20 px-4 md:px-12 max-w-7xl mx-auto w-full relative z-10">
+        <Link to="/" className="inline-block mb-10 group">
+          <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/60 backdrop-blur-md border border-white/80 shadow-[0_4px_15px_rgba(0,0,0,0.03)] text-[#4d6356] font-extrabold text-[11px] tracking-widest uppercase transition-all duration-300 hover:-translate-x-1 hover:bg-white/90 hover:text-[#006c48] hover:shadow-[0_8px_25px_rgba(0,108,72,0.12)]">
+            <div className="w-8 h-8 rounded-full bg-white shadow-[0_2px_8px_rgba(0,0,0,0.05)] flex items-center justify-center text-[#006c48] group-hover:scale-110 transition-transform duration-300">
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </div>
+            Back to Market
           </div>
-          <h1 className="text-4xl font-bold text-green-800 mb-4">
-            {plant.name}
-          </h1>
-          <div className="flex gap-3 mb-8">
-            <span className="px-4 py-1.5 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
-              Difficulty: {plant.careDifficulty}
-            </span>
-            <span className="px-4 py-1.5 bg-slate-100 text-slate-700 rounded-full text-sm font-semibold">
-              Status: {plant.status}
-            </span>
+        </Link>
+
+        {/* Hero Section: Tilted Glass Card */}
+        <div className="tilted-perspective-botanica glass-card-botanica rounded-xl p-8 md:p-12 border border-white/60 shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24 animate-in fade-in slide-in-from-bottom-10 duration-1000 ease-out">
+          {/* Plant Frame (Skeuomorphic Wood) */}
+          <div className="wood-frame-botanica rounded-xl overflow-hidden relative aspect-square group">
+            <img
+              src={plant.imageUrl || "/HeroSub.jpg"}
+              alt={plant.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+            {plant.status && (
+              <div className="absolute bottom-6 left-6">
+                <span className="bg-white/80 backdrop-blur-md text-[#006c48] text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-[#006c48]/10 shadow-sm">
+                  {plant.status}
+                </span>
+              </div>
+            )}
           </div>
-          <h3 className="text-xl font-semibold text-slate-800 mb-3">
-            About this plant
-          </h3>
-          <p className="text-slate-600 mb-8 leading-relaxed whitespace-pre-line text-lg">
-            {plant.description}
-          </p>
-          <div className="mt-auto pt-6 border-t border-slate-100">
-            <div className="flex items-center gap-3 mb-6">
-              <img
-                src={
-                  plant.ownerImageUrl ||
-                  "https://ui-avatars.com/api/?name=" +
-                    (plant.ownerName || "User")
-                }
-                alt={plant.ownerName}
-                className="w-12 h-12 rounded-full border-2 border-slate-200"
-              />
-              <div>
-                <p className="text-sm font-medium text-slate-700">Listed by</p>
-                <p className="text-lg font-semibold text-slate-900">
-                  {plant.ownerName || "Unknown Member"}
-                </p>
+
+          {/* Content Area */}
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-[#006c48] text-sm uppercase tracking-widest font-bold mb-2">
+                {plant.categoryName || "Uncategorized"}
+              </h2>
+              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-[#006c48] via-[#4d6356] to-[#c4f0d5] leading-tight pb-2">
+                {plant.name}
+              </h1>
+            </div>
+
+            <div className="flex gap-3 items-center">
+              <div className="flex items-center gap-2 bg-[#c4f0d5]/40 border border-[#006c48]/10 px-4 py-1.5 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-[#006c48] animate-pulse"></span>
+                <span className="text-xs font-bold text-[#006c48] tracking-wide">
+                  {plant.careDifficulty} Difficulty
+                </span>
               </div>
             </div>
+
+            <p className="text-[#414942] text-lg leading-relaxed font-light">
+              {plant.description ||
+                "A stunning specimen ready for a new home. This plant has been cultivated with care, exhibiting lush foliage and perfect health. Ideal for enhancing your indoor or outdoor space."}
+            </p>
+
+            {/* Owner Card */}
+            <div className="flex items-center gap-4 bg-white/40 p-4 rounded-xl border border-black/5 transition-transform hover:scale-[1.01]">
+              <div className="w-14 h-14 rounded-full p-1 bg-gradient-to-br from-[#c4f0d5] to-[#d1e8da] shadow-sm">
+                <div className="w-full h-full rounded-full overflow-hidden border-2 border-white sunk-in-botanica">
+                  <img
+                    src={
+                      plant.ownerImageUrl ||
+                      `https://ui-avatars.com/api/?name=${plant.ownerName || "User"}&background=c4f0d5&color=006c48`
+                    }
+                    alt={plant.ownerName}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="text-[#191c1a] font-bold">
+                  {plant.ownerName || "Unknown Member"}
+                </div>
+                <div className="text-[#717973] text-xs tracking-wider uppercase font-semibold">
+                  Plant Owner • Community Member
+                </div>
+              </div>
+            </div>
+
+            {/* Primary CTA */}
             {plant.ownerId === loggedInMemberId ? (
-              <Button
+              <button
                 disabled
-                variant="secondary"
-                className="w-full text-lg py-6 cursor-not-allowed"
+                className="bg-slate-200 w-full py-5 rounded-full text-slate-500 font-black text-xl tracking-tight shadow-sm cursor-not-allowed border border-white/60 relative overflow-hidden"
               >
-                This is your plant
-              </Button>
+                <span className="relative z-10">This is your plant</span>
+              </button>
             ) : (
-              <Button
+              <button
                 onClick={handleRequestSwap}
                 disabled={createRequestMutation.isPending}
-                className="w-full bg-green-700 hover:bg-green-800 text-lg py-6"
+                className="liquid-fill-botanica group relative w-full py-5 rounded-full text-white font-black text-xl tracking-tight shadow-lg hover:shadow-[#006c48]/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-70 border border-white/20"
               >
-                {createRequestMutation.isPending
-                  ? "Requesting..."
-                  : "Request to Swap"}
-              </Button>
+                <span className="relative z-10">
+                  {createRequestMutation.isPending
+                    ? "Sending Request..."
+                    : "Request to Swap"}
+                </span>
+              </button>
             )}
           </div>
         </div>
-      </Card>
 
-      {/* NEW FEEDBACK SECTION */}
-      <div className="max-w-3xl">
-        <h2 className="text-2xl font-bold text-slate-800 mb-6">
-          Community Feedback & Questions
-        </h2>
-
-        {/* The List of Comments */}
-        <div className="space-y-4 mb-8">
-          {feedbacks.length === 0 ? (
-            <p className="text-slate-500 italic">
-              No feedback yet. Be the first to ask a question!
-            </p>
-          ) : (
-            feedbacks.map((fb) => (
-              <Card key={fb.id} className="bg-slate-50 border-slate-200">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-semibold text-slate-700">
-                      {fb.user}
-                    </span>
-                    <span className="text-xs text-slate-400">{fb.date}</span>
-                  </div>
-                  <p className="text-slate-600">{fb.text}</p>
-                </CardContent>
-              </Card>
-            ))
-          )}
-        </div>
-
-        {/* The Form to Add New Feedback */}
-        <form
-          onSubmit={handleAddFeedback}
-          className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm"
-        >
-          <h3 className="text-lg font-semibold text-slate-700 mb-3">
-            {plant.ownerId === loggedInMemberId
-              ? "Reply to questions"
-              : "Leave a comment"}
-          </h3>
-          {plant.ownerId !== loggedInMemberId && (
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-slate-700 mb-1">
-                Rating
-              </label>
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    type="button"
-                    onClick={() => setRating(star)}
-                    className={`text-3xl hover:scale-110 transition-transform ${star <= rating ? "text-yellow-400" : "text-slate-300"}`}
-                  >
-                    ★
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          <Textarea
-            placeholder={
-              plant.ownerId === loggedInMemberId
-                ? "Answer questions or add updates..."
-                : "Ask a question about this plant or leave a review..."
-            }
-            className="mb-4"
-            rows={3}
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-          />
-          <div className="flex justify-end">
-            <Button type="submit" className="bg-slate-800 hover:bg-slate-900">
-              Post Feedback
-            </Button>
+        {/* Feedback Section */}
+        <section className="space-y-12">
+          <div className="flex justify-between items-end border-b border-[#006c48]/10 pb-4">
+            <h3 className="text-3xl font-bold tracking-tight text-[#191c1a]">
+              Community Feedback & Questions
+            </h3>
+            <span className="text-[#717973] text-sm uppercase tracking-widest pb-1 font-bold">
+              {feedbacks.length} Contributions
+            </span>
           </div>
-        </form>
-      </div>
-      {/* END OF FEEDBACK SECTION */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {feedbacks.length === 0 ? (
+              <div className="col-span-1 md:col-span-2 glass-card-botanica p-8 rounded-xl border border-white/80 text-center text-[#717973] italic">
+                No feedback yet. Be the first to ask a question!
+              </div>
+            ) : (
+              feedbacks.map((fb, idx) => (
+                <div
+                  key={fb.id}
+                  className="glass-card-botanica p-6 rounded-xl border border-white/80 hover:translate-y-[-8px] transition-transform duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.03)] animate-in fade-in slide-in-from-bottom-6"
+                  style={{
+                    animationDelay: `${idx * 100}ms`,
+                    animationFillMode: "both",
+                  }}
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-white border border-black/5 overflow-hidden flex justify-center items-center font-bold text-[#006c48]">
+                        {fb.user.charAt(0).toUpperCase()}
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-[#191c1a]">
+                          {fb.user}
+                        </div>
+                        <div className="text-[10px] text-[#717973] uppercase tracking-tighter font-semibold">
+                          Community Member
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex text-[#006c48] gap-[2px]">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-4 h-4 ${i < (fb.date.length || 5) ? "text-[#006c48]" : "text-slate-300"}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-[#414942] text-sm italic leading-relaxed">
+                    "{fb.text}"
+                  </p>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Feedback Form (Skeuomorphic Light) */}
+          <div className="bg-white/30 backdrop-blur-md p-8 rounded-xl border border-white/40 relative overflow-hidden shadow-[inset_0_2px_15px_rgba(0,0,0,0.03)]">
+            <div className="absolute top-[-20px] right-[-20px] p-4 opacity-5 rotate-12 pointer-events-none">
+              <svg
+                className="w-48 h-48 text-[#006c48]"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+
+            <h4 className="text-xl font-bold mb-6 text-[#191c1a] relative z-10">
+              {plant.ownerId === loggedInMemberId
+                ? "Reply to questions"
+                : "Share your thoughts"}
+            </h4>
+
+            <form
+              onSubmit={handleAddFeedback}
+              className="space-y-6 relative z-10"
+            >
+              {plant.ownerId !== loggedInMemberId && (
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-sm text-[#717973] uppercase tracking-widest font-bold">
+                    Your Rating:
+                  </span>
+                  <div className="flex gap-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setRating(star)}
+                        className={`transition-all hover:scale-110 ${star <= rating ? "text-[#006c48] drop-shadow-[0_0_5px_rgba(0,108,72,0.3)]" : "text-[#717973]/30"}`}
+                      >
+                        <svg
+                          className="w-6 h-6"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="sunk-in-botanica bg-white/50 rounded-xl p-1 transition-all focus-within:bg-white/80">
+                <Textarea
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  className="w-full bg-transparent border-none focus-visible:ring-0 text-[#191c1a] placeholder:text-[#717973]/50 p-4 font-light text-[15px] h-32 resize-none shadow-none"
+                  placeholder={
+                    plant.ownerId === loggedInMemberId
+                      ? "Answer questions or add updates..."
+                      : "Tell the community about your interest or ask a question..."
+                  }
+                />
+              </div>
+
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-[#006c48] text-white px-8 py-3 rounded-full border border-[#006c48] shadow-lg hover:bg-[#005a3b] active:scale-[0.98] transition-all font-bold uppercase tracking-widest text-[11px]"
+                >
+                  Post Contribution
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
