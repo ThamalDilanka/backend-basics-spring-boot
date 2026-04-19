@@ -89,7 +89,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex-1 w-full flex justify-center items-center p-4 relative overflow-hidden bg-gradient-to-br from-[#e5eee3] via-[#d6ebd3] to-[#c9eed1]">
+    <div className="min-h-screen flex-1 w-full flex justify-center items-center pt-32 pb-12 px-4 relative overflow-hidden bg-gradient-to-br from-[#e5eee3] via-[#d6ebd3] to-[#c9eed1]">
       <Card className="w-full max-w-lg relative z-10 backdrop-blur-xl bg-white/40 border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2.5rem] p-4 animate-in fade-in zoom-in-95 slide-in-from-bottom-6 duration-700 ease-out">
         <CardHeader className="space-y-2 text-left px-6 pt-6">
           <CardTitle className="text-3xl font-bold tracking-tight text-slate-800">
@@ -141,39 +141,38 @@ export default function SignUp() {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label
-                  htmlFor="password"
-                  className="text-xs font-bold text-slate-500 uppercase tracking-widest"
-                >
-                  Password
-                </Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="bg-transparent border-t-0 border-x-0 border-b border-slate-300 rounded-none px-0 shadow-none focus-visible:ring-0 focus-visible:border-slate-800 transition-colors"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label
-                  htmlFor="neighborhood"
-                  className="text-xs font-bold text-slate-500 uppercase tracking-widest"
-                >
-                  Neighborhood
-                </Label>
-                <Input
-                  id="neighborhood"
-                  placeholder="e.g. Indiranagar"
-                  value={neighborhood}
-                  onChange={(e) => setNeighborhood(e.target.value)}
-                  className="bg-transparent border-t-0 border-x-0 border-b border-slate-300 rounded-none px-0 shadow-none focus-visible:ring-0 focus-visible:border-slate-800 transition-colors"
-                />
-              </div>
+            <div className="space-y-2">
+              <Label
+                htmlFor="password"
+                className="text-xs font-bold text-slate-500 uppercase tracking-widest"
+              >
+                Password
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="bg-transparent border-t-0 border-x-0 border-b border-slate-300 rounded-none px-0 shadow-none focus-visible:ring-0 focus-visible:border-slate-800 transition-colors"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label
+                htmlFor="neighborhood"
+                className="text-xs font-bold text-slate-500 uppercase tracking-widest"
+              >
+                Neighborhood
+              </Label>
+              <Input
+                id="neighborhood"
+                placeholder="e.g. Indiranagar"
+                value={neighborhood}
+                onChange={(e) => setNeighborhood(e.target.value)}
+                className="bg-transparent border-t-0 border-x-0 border-b border-slate-300 rounded-none px-0 shadow-none focus-visible:ring-0 focus-visible:border-slate-800 transition-colors"
+              />
             </div>
 
             <div className="space-y-2 pt-2">

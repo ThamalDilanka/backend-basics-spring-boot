@@ -59,7 +59,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex-1 w-full flex justify-center items-center p-4 relative overflow-hidden bg-gradient-to-br from-[#e5eee3] via-[#d6ebd3] to-[#c9eed1]">
+    <div className="min-h-screen flex-1 w-full flex justify-center items-center pt-32 pb-12 px-4 relative overflow-hidden bg-gradient-to-br from-[#e5eee3] via-[#d6ebd3] to-[#c9eed1]">
       <Card className="w-full max-w-lg relative z-10 backdrop-blur-xl bg-white/40 border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2.5rem] p-4 animate-in fade-in zoom-in-95 slide-in-from-bottom-6 duration-700 ease-out">
         <CardHeader className="space-y-2 text-left px-6 pt-6">
           <CardTitle className="text-3xl font-bold tracking-tight text-slate-800">
